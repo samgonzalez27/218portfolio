@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+title: Home
+description: Welcome to my professional portfolio
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Hi, I'm <span class="highlight">{{ metadata.author }}</span></h1>
+      <p class="hero-subtitle">Software Developer | Problem Solver | Lifelong Learner</p>
+      <p class="hero-description">
+        Welcome to my portfolio. I build modern web applications and share my journey in software development.
+      </p>
+      <div class="hero-cta">
+        <a href="/projects/" class="btn-primary">View Projects</a>
+        <a href="/about/" class="btn-secondary">About Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      {% set featuredProjects = collections.projects | head(3) %}
+      {% for project in featuredProjects %}
+        <article class="project-card">
+          <h3 class="project-card-title">
+            <a href="{{ project.url }}">{{ project.data.title }}</a>
+          </h3>
+          {% if project.data.description %}
+            <p class="project-card-description">{{ project.data.description }}</p>
+          {% endif %}
+          {% if project.data.technologies %}
+            <div class="project-card-tech">
+              {% for tech in project.data.technologies | head(3) %}
+                <span class="tech-badge">{{ tech }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <a href="{{ project.url }}" class="read-more">View Project →</a>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="section-cta">
+      <a href="/projects/" class="btn-primary">View All Projects</a>
+    </div>
+  </div>
+</section>
+
+<section class="recent-posts-section">
+  <div class="container">
+    <h2 class="section-title">Recent Posts</h2>
+    <div class="blog-list">
+      {% set recentPosts = collections.blog | head(3) %}
+      {% for post in recentPosts %}
+        <article class="blog-card">
+          <h3 class="blog-card-title">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+          <div class="blog-card-meta">
+            <time datetime="{{ post.date | htmlDateString }}">
+              {{ post.date | readableDate }}
+            </time>
+          </div>
+          {% if post.data.description %}
+            <p class="blog-card-description">{{ post.data.description }}</p>
+          {% endif %}
+          <a href="{{ post.url }}" class="read-more">Read more →</a>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="section-cta">
+      <a href="/blog/" class="btn-primary">View All Posts</a>
+    </div>
+  </div>
+</section>

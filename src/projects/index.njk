@@ -1,0 +1,44 @@
+---
+layout: layouts/page.njk
+title: Projects
+description: A showcase of my development work and technical projects.
+permalink: /projects/
+---
+
+<div class="projects-grid">
+  {% set projectList = collections.projects %}
+  
+  {% if projectList.length %}
+    {% for project in projectList %}
+      <article class="project-card">
+        <h2 class="project-card-title">
+          <a href="{{ project.url }}">{{ project.data.title }}</a>
+        </h2>
+        
+        {% if project.data.description %}
+          <p class="project-card-description">{{ project.data.description }}</p>
+        {% endif %}
+        
+        {% if project.data.technologies %}
+          <div class="project-card-tech">
+            {% for tech in project.data.technologies %}
+              <span class="tech-badge">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <div class="project-card-links">
+          <a href="{{ project.url }}" class="btn-primary">View Details</a>
+          {% if project.data.github %}
+            <a href="{{ project.data.github }}" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {% endif %}
+          {% if project.data.demo %}
+            <a href="{{ project.data.demo }}" class="btn-secondary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  {% else %}
+    <p class="no-projects">Projects coming soon! Check back later.</p>
+  {% endif %}
+</div>

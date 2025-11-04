@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="project">
+  <header class="project-header">
+    <h1>{{ title }}</h1>
+    {% if description %}
+      <p class="project-description">{{ description }}</p>
+    {% endif %}
+    
+    <div class="project-meta">
+      {% if technologies %}
+        <div class="technologies">
+          <strong>Technologies:</strong>
+          {% for tech in technologies %}
+            <span class="tech-badge">{{ tech }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="project-links">
+        {% if github %}
+          <a href="{{ github }}" class="project-link" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        {% endif %}
+        {% if demo %}
+          <a href="{{ demo }}" class="project-link" target="_blank" rel="noopener noreferrer">
+            Live Demo
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  
+  <div class="project-content">
+    {{ content | safe }}
+  </div>
+  
+  <footer class="project-footer">
+    <a href="/projects/" class="back-link">← Back to Projects</a>
+  </footer>
+</article>
